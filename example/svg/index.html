@@ -1,0 +1,42 @@
+<head>
+  <script src="//unpkg.com/d3-zoomable"></script>
+  <!--<script src="../../dist/d3-zoomable.js"></script>-->
+
+  <style>
+    body { margin: 0; }
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    #log {
+      font-family: sans-serif;
+      font-size: 14px;
+      position: absolute;
+      left: 10px;
+      bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <svg id="main" viewBox="0 0 1 1">
+    <g id="zoom">
+      <circle cx="0.3333" cy="0.3333" r="0.25" stroke="green" stroke-width="0.01" fill="none" ></circle>
+      <circle cx="0.6666" cy="0.3333" r="0.25" stroke="red" stroke-width="0.01" fill="none" ></circle>
+      <circle cx="0.5" cy="0.6666" r="0.25" stroke="blue" stroke-width="0.01" fill="none" ></circle>
+    </g>
+  </svg>
+  <div id="log">Zoom/pan with mouse wheel/drag</div>
+
+  <script>
+    const logEl = document.getElementById('log');
+
+    zoomable()
+      (document.getElementById('main'))
+      .svgEl(document.getElementById('zoom'))
+      .onChange(tr => logEl.textContent = `Zoom settings: ${JSON.stringify(tr)}`);
+
+  </script>
+</body>
