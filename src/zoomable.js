@@ -5,25 +5,25 @@ import Kapsule from 'kapsule';
 export default Kapsule({
   props: {
     htmlEl: { onChange(el, state) {
-      state.htmlElD3 = !el
-        ? null
-        : typeof el === 'object' && !!el.node && typeof el.node === 'function'
+      state.htmlEls = (!el ? [] : el instanceof Array ? el : [el])
+        .map(el => typeof el === 'object' && !!el.node && typeof el.node === 'function'
           ? el // already a D3 selection
-          : d3Select(el);
+          : d3Select(el)
+        );
     }, triggerUpdate: false },
     svgEl: { onChange(el, state) {
-      state.svgElD3 = !el
-        ? null
-        : typeof el === 'object' && !!el.node && typeof el.node === 'function'
+      state.svgEls = (!el ? [] : el instanceof Array ? el : [el])
+        .map(el => typeof el === 'object' && !!el.node && typeof el.node === 'function'
           ? el // already a D3 selection
-          : d3Select(el);
+          : d3Select(el)
+        );
     }, triggerUpdate: false },
     canvasEl: { onChange(el, state) {
-      state.canvasCtx = !el
-        ? null
-        : typeof el === 'object' && !!el.node && typeof el.node === 'function'
+      state.canvasCtxs = (!el ? [] : el instanceof Array ? el : [el])
+        .map(el => typeof el === 'object' && !!el.node && typeof el.node === 'function'
           ? el.node().getContext('2d') // D3 selection
-          : el.getContext('2d');
+          : el.getContext('2d')
+        );
     }, triggerUpdate: false },
     enableX: { default: true, triggerUpdate: false },
     enableY: { default: true, triggerUpdate: false },
@@ -90,19 +90,19 @@ export default Kapsule({
           const scX = state.enableX ? tr.k : 1;
           const scY = state.enableY ? tr.k : 1;
 
-          if (state.htmlElD3) {
-            (duration ? state.htmlElD3.transition().duration(duration) : state.htmlElD3)
+          state.htmlEls.forEach(el => {
+            (duration ? el.transition().duration(duration) : el)
               .style('transform', `translate(${tr.x}px, ${tr.y}px) scale(${scX}, ${scY})`);
-          }
+          });
 
-          if (state.svgElD3) {
-            (duration ? state.svgElD3.transition().duration(duration) : state.svgElD3)
+          state.svgEls.forEach(el => {
+            (duration ? el.transition().duration(duration) : el)
               .attr('transform', `translate(${tr.x}, ${tr.y}) scale(${scX}, ${scY})`);
-          }
+          });
 
-          if (state.canvasCtx) {
+          state.canvasCtxs.forEach(ctx => {
             // ToDo
-          }
+          });
         })
       );
 

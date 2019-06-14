@@ -33,9 +33,9 @@ myZoom(<DOM element to capture mouse events>)
 
 | Method | Description | Default |
 | --- | --- | :--: |
-| <b>htmlEl</b>([<i>node or d3-selection</i>]) | Getter/setter for the HTML DOM element to control using the `transform` style property. | |
-| <b>svgEl</b>([<i>node or d3-selection</i>]) | Getter/setter for the SVG DOM element to control using the `transform` attribute. | |
-| <b>canvasEl</b>([<i>node or d3-selection</i>]) | Getter/setter for the Canvas DOM element to control using context transform operations. | |
+| <b>htmlEl</b>([<i>node, d3-selection or array</i>]) | Getter/setter for the HTML DOM element to control using the `transform` style property. Also accepts a list of elements by passing an array. | |
+| <b>svgEl</b>([<i>node, d3-selection or array</i>]) | Getter/setter for the SVG DOM element to control using the `transform` attribute. Also accepts a list of elements by passing an array. | |
+| <b>canvasEl</b>([<i>node, d3-selection or array</i>]) | Getter/setter for the Canvas DOM element to control using context transform operations. Also accepts a list of elements by passing an array. | |
 | <b>enableX</b>([<i>bool</i>]) | Getter/setter for whether to enable zooming along the X axis. | `true` |
 | <b>enableY</b>([<i>bool</i>]) | Getter/setter for whether to enable zooming along the Y axis. | `true` |
 | <b>scaleExtent</b>([<i>[number, number]</i>]) | Getter/setter for the zoom limits to enforce, similar to [d3-zoom scaleExtent](https://github.com/d3/d3-zoom#zoom_scaleExtent). | `[1, ∞]` |
