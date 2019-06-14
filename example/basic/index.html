@@ -1,17 +1,43 @@
 <head>
-  <style> body { margin: 0; } </style>
+  <script src="//unpkg.com/d3-zoomable"></script>
+  <!--<script src="../../dist/d3-zoomable.js"></script>-->
 
-  <script src="//unpkg.com/__my_module_name__"></script>
-  <!--<script src="../../dist/__my_module_name__.js"></script>-->
+  <style>
+    body { margin: 0; }
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    #log {
+      font: sans-serif;
+      font-size: 14px;
+      position: absolute;
+      left: 10px;
+      bottom: 10px;
+    }
+  </style>
 </head>
 
 <body>
-  <div id="main"></div>
+  <svg id="main" viewBox="0 0 1 1">
+    <g id="zoom">
+      <circle cx="0.3333" cy="0.3333" r="0.25" stroke="green" stroke-width="0.01" fill="none" />
+      <circle cx="0.6666" cy="0.3333" r="0.25" stroke="red" stroke-width="0.01" fill="none" />
+      <circle cx="0.5" cy="0.6666" r="0.25" stroke="blue" stroke-width="0.01" fill="none" />
+    </g>
+  </svg>
+  <div id="log">Zoom/pan with mouse wheel/drag</div>
 
   <script>
 
-    const Graph = __my_global_var_name__()
-      (document.getElementById('main'));
+    const logEl = document.getElementById('log');
+
+    zoomable()
+      (document.getElementById('main'))
+      .svgEl(document.getElementById('zoom'))
+      .onChange(tr => logEl.textContent = `Zoom settings: ${JSON.stringify(tr)}`);
 
   </script>
 </body>
