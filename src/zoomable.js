@@ -85,6 +85,8 @@ export default Kapsule({
           const duration = state.transitionDuration || 0;
           state.transitionDuration = 0; // reset it
 
+          state.onChange && state.onChange(tr, prevTr, duration);
+
           const scX = state.enableX ? tr.k : 1;
           const scY = state.enableY ? tr.k : 1;
 
@@ -101,8 +103,6 @@ export default Kapsule({
           if (state.canvasCtx) {
             // ToDo
           }
-
-          state.onChange && state.onChange(tr, prevTr, duration);
         })
       );
 
