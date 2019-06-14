@@ -1,54 +1,55 @@
-__my_module_name__
+d3-zoomable
 ==================
 
 [![NPM package][npm-img]][npm-url]
 [![Build Size][build-size-img]][build-size-url]
 [![Dependencies][dependencies-img]][dependencies-url]
 
-<-- short description -->.
+This reusable component provides an easy way to make DOM elements zoomable/pannable using mouse wheel/drag events. It is mostly a convenience wrapper around [d3-zoom](https://github.com/d3/d3-zoom) functionality which hides away some of the complexity and provides easy access to common use cases.
 
-<p align="center">
-     <a href="https://vasturiano.github.io/__my_module_name__/example/basic"><img width="80%" src="https://vasturiano.github.io/__my_module_name__/example/preview.png"></a>
-</p>
-
-<-- long description -->.
-
-Check out the examples:
-* [Basic](https://vasturiano.github.io/__my_module_name__/example/basic/) ([source](https://github.com/vasturiano/__my_module_name__/blob/master/example/basic/index.html))
+Supports zooming `svg` (via transform attribute), `canvas` (via context transform) or even plain `html` DOM elements (via transform style).
 
 ## Quick start
 
 ```
-import __my_global_var_name__ from '__my_module_name__';
+import zoomable from 'd3-zoomable';
 ```
 or
 ```
-const __my_global_var_name__ = require('__my_module_name__');
+const zoomable = require('d3-zoomable');
 ```
 or even
 ```
-<script src="//unpkg.com/__my_module_name__"></script>
+<script src="//unpkg.com/d3-zoomable"></script>
 ```
 then
 ```
-var myGraph = __my_global_var_name__();
-myGraph(<myDOMElement>)
-    .prop(...);
+const myZoom = zoomable();
+myZoom(<DOM element to capture mouse events>)
+    .svgEl(<SVG element to transform>);
 ```
 
 ## API reference
 
 | Method | Description | Default |
 | --- | --- | :--: |
-| <b>data</b>([<i>array</i>]) | Getter/setter for element data. | `[]` |
+| <b>htmlEl</b>([<i>node or d3-selection</i>]) | Getter/setter for the HTML DOM element to control using the `transform` style property. | |
+| <b>svgEl</b>([<i>node or d3-selection</i>]) | Getter/setter for the SVG DOM element to control using the `transform` attribute. | |
+| <b>canvasEl</b>([<i>node or d3-selection</i>]) | Getter/setter for the Canvas DOM element to control using context transform operations. | |
+| <b>enableX</b>([<i>bool</i>]) | Getter/setter for whether to enable zooming along the X axis. | `true` |
+| <b>enableY</b>([<i>bool</i>]) | Getter/setter for whether to enable zooming along the Y axis. | `true` |
+| <b>scaleExtent</b>([<i>[number, number]</i>]) | Getter/setter for the zoom limits to enforce, similar to [d3-zoom scaleExtent](https://github.com/d3/d3-zoom#zoom_scaleExtent). | `[1, ∞]` |
+| <b>translateExtent</b>([<i>[[number, number], [number, number]]</i>]) | Getter/setter for the pan limits to enforce, similar to [d3-zoom translateExtent](https://github.com/d3/d3-zoom#zoom_translateExtent). | `[[-∞, -∞], [+∞, +∞]]` |
+| <b>current</b>() | Getter for the current transform settings, in `{ x, y, k }` syntax. |  |
+| <b>zoomBy</b>(<i>number</i>[, <i>duration</i>]) | Programmatically adjust the zoom scale by a certain amount. Optionally set a transition duration (in `ms`) to animate the transformation. |  |
+| <b>zoomReset</b>([<i>duration</i>]) | Programmatically reset the zoom to its initial setting (`{ x: 0, y: 0, k: 1 }`). Optionally set a transition duration (in `ms`) to animate the transformation. |  |
+| <b>zoomTo</b>(<i>{ x, y, k }</i> [, <i>duration</i>]) | Programmatically apply a certain zoom setting, defined by the `x`, `y` translation, and the `k` scaling. Optionally set a transition duration (in `ms`) to animate the transformation. |  |
+| <b>onChange</b>(<i>fn(newTransform, previousTransform, duration)</i>) | Callback function invoked whenever the zoom settings change, either by user interaction of programmatically. The callback arguments include the new transform (`{ x, y, k }` syntax), the previous transform, and the duration of the zoom (in `ms`) in the case of programmatic requests. | |
 
-## Giving Back
 
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=L398E7PKP47E8&currency_code=USD&source=url) If this project has helped you and you'd like to contribute back, you can always [buy me a ☕](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=L398E7PKP47E8&currency_code=USD&source=url)!
-
-[npm-img]: https://img.shields.io/npm/v/__my_module_name__.svg
-[npm-url]: https://npmjs.org/package/__my_module_name__
-[build-size-img]: https://img.shields.io/bundlephobia/minzip/__my_module_name__.svg
-[build-size-url]: https://bundlephobia.com/result?p=__my_module_name__
-[dependencies-img]: https://img.shields.io/david/vasturiano/__my_module_name__.svg
-[dependencies-url]: https://david-dm.org/vasturiano/__my_module_name__
+[npm-img]: https://img.shields.io/npm/v/d3-zoomable.svg
+[npm-url]: https://npmjs.org/package/d3-zoomable
+[build-size-img]: https://img.shields.io/bundlephobia/minzip/d3-zoomable.svg
+[build-size-url]: https://bundlephobia.com/result?p=d3-zoomable
+[dependencies-img]: https://img.shields.io/david/vasturiano/d3-zoomable.svg
+[dependencies-url]: https://david-dm.org/vasturiano/d3-zoomable
