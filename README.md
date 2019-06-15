@@ -9,6 +9,11 @@ This reusable component provides an easy way to make DOM elements zoomable/panna
 
 Supports zooming `svg` (via transform attribute), `canvas` (via context transform) or even plain `html` DOM elements (via transform style).
 
+Check out the examples:
+* [HTML](https://vasturiano.github.io/d3-zoomable/example/html/) ([source](https://github.com/vasturiano/d3-zoomable/blob/master/example/html/index.html))
+* [SVG](https://vasturiano.github.io/d3-zoomable/example/svg/) ([source](https://github.com/vasturiano/d3-zoomable/blob/master/example/svg/index.html))
+* [Canvas](https://vasturiano.github.io/d3-zoomable/example/canvas/) ([source](https://github.com/vasturiano/d3-zoomable/blob/master/example/canvas/index.html))
+
 ## Quick start
 
 ```
