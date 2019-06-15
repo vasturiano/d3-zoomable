@@ -1,4 +1,6 @@
 import { select as d3Select, event as d3Event } from 'd3-selection';
+import { transition as d3Transition } from 'd3-transition';
+import { interpolateNumber as d3InterpolateNumber } from 'd3-interpolate';
 import { zoom as d3Zoom, zoomIdentity as d3ZoomIdentity } from 'd3-zoom';
 import Kapsule from 'kapsule';
 
@@ -85,8 +87,6 @@ export default Kapsule({
           const duration = state.transitionDuration || 0;
           state.transitionDuration = 0; // reset it
 
-          state.onChange && state.onChange(tr, prevTr, duration);
-
           const scX = state.enableX ? tr.k : 1;
           const scY = state.enableY ? tr.k : 1;
 
@@ -100,9 +100,24 @@ export default Kapsule({
               .attr('transform', `translate(${tr.x}, ${tr.y}) scale(${scX}, ${scY})`);
           });
 
-          state.canvasCtxs.forEach(ctx => {
-            // ToDo
+          state.canvasCtxs.forEach((ctx, idx) => {
+            const applyTr = ({ x, y, scX, scY }) => {
+              ctx.setTransform(scX, 0, 0, scY, x, y);
+            };
+
+            duration
+              ? d3Transition().duration(duration).tween(`animate-ctx-${idx}`, () => {
+                const xIpol = d3InterpolateNumber(prevTr.x, tr.x);
+                const yIpol = d3InterpolateNumber(prevTr.y, tr.y);
+                const scXIpol = state.enableX ? d3InterpolateNumber(prevTr.k, tr.k) : () => 1;
+                const scYIpol = state.enableY ? d3InterpolateNumber(prevTr.k, tr.k) : () => 1;
+
+                return t => applyTr({ x: xIpol(t), y: yIpol(t), scX: scXIpol(t), scY: scYIpol(t) });
+              })
+              : applyTr({ scX, scY, ...tr });
           });
+
+          state.onChange && state.onChange(tr, prevTr, duration);
         })
       );
 
