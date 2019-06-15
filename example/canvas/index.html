@@ -1,0 +1,72 @@
+<head>
+  <script src="//unpkg.com/d3-zoomable"></script>
+<!--  <script src="../../dist/d3-zoomable.js"></script>-->
+
+  <style>
+    body { margin: 0; }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+    }
+
+    #log {
+      font-family: sans-serif;
+      font-size: 14px;
+      position: absolute;
+      left: 10px;
+      bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="canvas"></canvas>
+  <div id="log">Zoom/pan with mouse wheel/drag</div>
+
+  <script>
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    const canvasEl = document.getElementById('canvas');
+    canvasEl.width = width;
+    canvasEl.height = height;
+
+    const logEl = document.getElementById('log');
+
+    const zoom = zoomable()
+      (canvasEl)
+      .canvasEl(canvasEl)
+      .onChange(tr => {
+        draw();
+        logEl.textContent = `Zoom settings: ${JSON.stringify(tr)}`;
+      });
+
+    draw(); // initial draw
+
+    //
+
+    function draw() {
+      const ctx = canvasEl.getContext('2d');
+      ctx.clearRect(0,0, width, height); // wip canvas
+
+      const r = height / 4;
+      ctx.lineWidth = 2 / zoom.current().k; // keep stroke size constant through different zoom levels
+
+      ctx.beginPath();
+      ctx.arc(width / 3, height / 3, r, 0, 2 * Math.PI);
+      ctx.strokeStyle = 'green';
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(width / 3 * 2, height / 3, r, 0, 2 * Math.PI);
+      ctx.strokeStyle = 'red';
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(width / 2, height / 3 * 2, r, 0, 2 * Math.PI);
+      ctx.strokeStyle = 'blue';
+      ctx.stroke();
+    }
+  </script>
+</body>
