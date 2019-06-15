@@ -1,6 +1,6 @@
 <head>
-<!--  <script src="//unpkg.com/d3-zoomable"></script>-->
-  <script src="../../dist/d3-zoomable.js"></script>
+  <script src="//unpkg.com/d3-zoomable"></script>
+  <!--<script src="../../dist/d3-zoomable.js"></script>-->
 
   <style>
     body { margin: 0; }
@@ -14,6 +14,7 @@
     }
 
     #zoom {
+      transform-origin: top left;
       width: 100%;
       height: 100%;
       display: flex;
@@ -25,6 +26,7 @@
       border-radius: 4px;
       background: pink;
       padding: 5px;
+      pointer-events: none;
     }
 
     #log {
@@ -54,6 +56,5 @@
       (document.getElementById('main'))
       .htmlEl(document.getElementById('zoom'))
       .onChange(tr => logEl.textContent = `Zoom settings: ${JSON.stringify(tr)}`);
-
   </script>
 </body>
