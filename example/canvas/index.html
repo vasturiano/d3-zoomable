@@ -51,7 +51,7 @@
       ctx.clearRect(0,0, width, height); // wip canvas
 
       const r = height / 4;
-      ctx.lineWidth = 2 / zoom.current().k; // keep stroke size constant through different zoom levels
+      ctx.lineWidth = 6 / zoom.current().k; // keep stroke size constant through different zoom levels
 
       ctx.beginPath();
       ctx.arc(width / 3, height / 3, r, 0, 2 * Math.PI);
