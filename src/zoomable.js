@@ -1,4 +1,4 @@
-import { select as d3Select, event as d3Event } from 'd3-selection';
+import { select as d3Select } from 'd3-selection';
 import { transition as d3Transition } from 'd3-transition';
 import { interpolateNumber as d3InterpolateNumber } from 'd3-interpolate';
 import { zoom as d3Zoom, zoomIdentity as d3ZoomIdentity } from 'd3-zoom';
@@ -65,7 +65,7 @@ export default Kapsule({
   },
 
   stateInit: () => ({
-    zoom: d3Zoom().filter(() => !d3Event.button && !d3Event.dblclick),
+    zoom: d3Zoom().filter(ev => !ev.button && !ev.dblclick),
     zoomTransform: { x: 0, y: 0, k: 1 }
   }),
 
@@ -75,8 +75,8 @@ export default Kapsule({
 
     state.el
       .call(state.zoom
-        .on('zoom', function() {
-          const tr = ({ ...d3Event.transform });
+        .on('zoom', function(ev) {
+          const tr = ({ ...ev.transform });
 
           !state.enableX && (tr.x = 0);
           !state.enableY && (tr.y = 0);
