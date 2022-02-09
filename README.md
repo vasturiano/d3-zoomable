@@ -3,7 +3,7 @@ d3-zoomable
 
 [![NPM package][npm-img]][npm-url]
 [![Build Size][build-size-img]][build-size-url]
-[![Dependencies][dependencies-img]][dependencies-url]
+[![NPM Downloads][npm-downloads-img]][npm-downloads-url]
 
 This reusable component provides an easy way to make DOM elements zoomable/pannable using mouse wheel/drag events. It is mostly a convenience wrapper around [d3-zoom](https://github.com/d3/d3-zoom) functionality which hides away some of the complexity and provides easy access to common use cases.
 
@@ -16,19 +16,19 @@ Check out the examples:
 
 ## Quick start
 
-```
+```js
 import zoomable from 'd3-zoomable';
 ```
 or
-```
+```js
 const zoomable = require('d3-zoomable');
 ```
 or even
-```
+```html
 <script src="//unpkg.com/d3-zoomable"></script>
 ```
 then
-```
+```js
 const myZoom = zoomable();
 myZoom(<DOM element to capture mouse events>)
     .svgEl(<SVG element to transform>);
@@ -52,9 +52,9 @@ myZoom(<DOM element to capture mouse events>)
 | <b>onChange</b>(<i>fn(newTransform, previousTransform, duration)</i>) | Callback function invoked whenever the zoom settings change, either by user interaction of programmatically. The callback arguments include the new transform (`{ x, y, k }` syntax), the previous transform, and the duration of the zoom (in `ms`) in the case of programmatic requests. | |
 
 
-[npm-img]: https://img.shields.io/npm/v/d3-zoomable.svg
+[npm-img]: https://img.shields.io/npm/v/d3-zoomable
 [npm-url]: https://npmjs.org/package/d3-zoomable
-[build-size-img]: https://img.shields.io/bundlephobia/minzip/d3-zoomable.svg
+[build-size-img]: https://img.shields.io/bundlephobia/minzip/d3-zoomable
 [build-size-url]: https://bundlephobia.com/result?p=d3-zoomable
-[dependencies-img]: https://img.shields.io/david/vasturiano/d3-zoomable.svg
-[dependencies-url]: https://david-dm.org/vasturiano/d3-zoomable
+[npm-downloads-img]: https://img.shields.io/npm/dt/d3-zoomable
+[npm-downloads-url]: https://www.npmtrends.com/d3-zoomable
