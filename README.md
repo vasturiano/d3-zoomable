@@ -19,11 +19,7 @@ Check out the examples:
 ```js
 import zoomable from 'd3-zoomable';
 ```
-or
-```js
-const zoomable = require('d3-zoomable');
-```
-or even
+or using a *script* tag
 ```html
 <script src="//unpkg.com/d3-zoomable"></script>
 ```
