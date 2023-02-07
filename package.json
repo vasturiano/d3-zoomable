@@ -1,6 +1,6 @@
 {
   "name": "d3-zoomable",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": "Easy way to apply d3-zoom functionality to DOM elements",
   "license": "MIT",
   "type": "module",
