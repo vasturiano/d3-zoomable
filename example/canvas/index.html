@@ -34,8 +34,7 @@
 
     const logEl = document.getElementById('log');
 
-    const zoom = zoomable()
-      (canvasEl)
+    const zoom = new zoomable(canvasEl)
       .canvasEl(canvasEl)
       .onChange(tr => {
         draw();

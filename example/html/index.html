@@ -52,8 +52,7 @@
   <script>
     const logEl = document.getElementById('log');
 
-    zoomable()
-      (document.getElementById('main'))
+    new zoomable(document.getElementById('main'))
       .htmlEl(document.getElementById('zoom'))
       .onChange(tr => logEl.textContent = `Zoom settings: ${JSON.stringify(tr)}`);
   </script>

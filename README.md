@@ -25,8 +25,7 @@ or using a *script* tag
 ```
 then
 ```js
-const myZoom = zoomable();
-myZoom(<DOM element to capture mouse events>)
+const myZoom = new zoomable(<DOM element to capture mouse events>)
     .svgEl(<SVG element to transform>);
 ```
 
