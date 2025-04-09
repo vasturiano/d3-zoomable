@@ -21,7 +21,7 @@ import zoomable from 'd3-zoomable';
 ```
 or using a *script* tag
 ```html
-<script src="//unpkg.com/d3-zoomable"></script>
+<script src="//cdn.jsdelivr.net/npm/d3-zoomable"></script>
 ```
 then
 ```js

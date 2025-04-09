@@ -4,6 +4,7 @@
   "description": "Easy way to apply d3-zoom functionality to DOM elements",
   "license": "MIT",
   "type": "module",
+  "jsdelivr": "dist/d3-zoomable.min.js",
   "unpkg": "dist/d3-zoomable.min.js",
   "main": "dist/d3-zoomable.mjs",
   "module": "dist/d3-zoomable.mjs",
